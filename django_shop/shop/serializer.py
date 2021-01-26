@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Category, Gallery, Product
+from .models import Category, Gallery, Product, Order
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -21,5 +21,11 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'name', 'description', 'price', 'discount_price', 'category', 'gallery')
+        fields = ('id', 'name', 'brand', 'description', 'color','price', 'discount_price', 'category', 'gallery')
+        depth = 1
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ('id', 'customer', 'date_ordered', 'complete', 'transaction_id')
         depth = 1
